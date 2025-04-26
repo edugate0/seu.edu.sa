@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - الجامعة السعودية الإلكترونية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(90deg, #8e44ad, #08a3d7);
+      color: black;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .header a {
+      text-decoration: none;
+      color: white;
+      background-color: black;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    img {
+      width: 100px;
+      margin: 20px auto;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+
+    }
+
+    .input-container {
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      padding-left: 40px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      box-sizing: border-box;
+    }
+
+    .eye-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 20px;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #0c9ca9;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 70px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0d4051;
+    }
+
+    .message {
+      color: red;
+      margin: 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      color: #fff;
+    }
+
+    a {
+      color: #5a5d5e;
+      text-decoration: none;
+      font-size: 10px;
+      display: block;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="logo.png" alt="شعار الجامعة السعودية الإلكترونية">
+    <p>login</p>
+    <div id="message" class="message"></div>
+    <form id="loginForm" onsubmit="return login(event)">
+      <div class="input-container">
+        <input type="text" id="studentId" placeholder="Enter your Username" required>
+      </div>
+
+      <div class="input-container">
+        <input type="password" id="password" placeholder=" Enter your password" required>
+        <span class="eye-icon" id="eyeIcon" onclick="togglePasswordVisibility()"></span>
+      </div>
+
+      <button type="submit">login</button>
+      
+      <a href="#" onclick="showSupportMessage()">forget password</a>
+      <a href="#" onclick="changePassword()">SSO Help</a>
+    </form>
+  </div>
+
+  <footer>
+    جميع الحقوق محفوظة لدى الجامعة السعودية الإلكترونية &copy; 2024
+  </footer>
+
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.style.display = "none";
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.style.display = "inline";
+      }
+    }
+
+    document.getElementById('password').addEventListener('input', function() {
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (this.value) {
+        eyeIcon.style.display = "inline";
+      } else {
+        eyeIcon.style.display = "none";
+      }
+    });
+
+    function login(event) {
+      event.preventDefault();
+      const studentId = document.getElementById('studentId').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const messageDiv = document.getElementById('message');
+
+      messageDiv.textContent = "";
+
+      if (studentId === "469191926" && password === "110658978") {
+        window.location.href = "student.html";
+      } else if (studentId === "469116296" && password === "10045689807") {
+        window.location.href = "students.html";
+      } else {
+        messageDiv.textContent = "خطأ: الرقم الجامعي أو كلمة المرور غير صحيحة.";
+      }
+    }
+
+    function showSupportMessage() {
+      alert("يرجى التواصل مع الدعم الفني للحصول على المساعدة في استعادة كلمة المرور.");
+    }
+
+    function changePassword() {
+      alert("سيتم توجيهك إلى صفحة تغيير كلمة المرور.");
+      window.location.href = "changepass.html";
+    }
+  </script>
+</body>
+</html>
